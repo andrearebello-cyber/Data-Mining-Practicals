@@ -6,7 +6,6 @@ This repository contains practicals/notebooks and supporting code for **Data Min
 
 - **`DMBi_Practicals.ipynb`** – Python notebook with multiple practical tasks (data loading, visualization, preprocessing, time-series analysis, clustering, and modeling).
 - **Datasets (CSV/XLSX)** – e.g. `ToyotaCorolla.csv`, `SouvenirSales.csv`, `ApplianceShipments.csv`, `BostonHousing.csv`, `Universities.csv`, `WalMartStock.csv`.
-- **Supporting scripts** – `prac1.R`, `prac2.R`, and `practice.py`.
 
 ## Datasets Used (examples)
 
