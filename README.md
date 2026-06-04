@@ -82,7 +82,7 @@ jupyter notebook
 
 ## Notes
 
-- Dataset files must be present in the same folder structure expected by each notebook/script (for `Data-mining-practicals-/Practical*.py`, keep datasets alongside that folder or update file paths).
+- Dataset files must be present in the same folder structure expected by each notebook/script.
 - Practical 6 requires feature scaling.
 - Practical 7 requires `mlxtend`.
 
