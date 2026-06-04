@@ -2,66 +2,71 @@
 
 This repository contains practicals/notebooks and supporting code for **Data Mining for Business Intelligence**.
 
-## Contents
+## Practicals overview (from the journal)
 
-- **`DMBi_Practicals.ipynb`** – Python notebook covering practicals 1–4 (data loading, visualization, preprocessing, time-series analysis, clustering, and modeling).
-- **`DMBi_Practicals(5,6,7).ipynb`** – Python notebook covering practicals 5–7 (Naive Bayes classification, Neural Network regression, and Association Rule Mining).
-- **Datasets (CSV/XLSX)** – `ToyotaCorolla.csv`, `SouvenirSales.csv`, `ApplianceShipments.csv`, `BostonHousing.csv`, `Universities.csv`, `WalMartStock.csv`, `accidentsFull.csv`, `Coursetopics.csv`.
-- **Supporting scripts** – `prac1.R`, `prac2.R`, and `practice.py`.
+### Practical 1 — Toyota Corolla (EDA + correlation + dummy encoding)
+- Explore correlations using a matrix/pair plot.
+- Convert categorical variables into binary dummy variables using the **N-1 rule** (dummy variable trap avoidance).
 
-## Practicals Overview
+### Practical 2 — Appliance Shipments & Souvenir Sales (time series plots + log transform + seasonality)
+- Create time plots and zoom to inspect quarterly patterns.
+- Re-create the same plots using an interactive tool (requires parsing quarter info as a date/quarter period).
+- For Souvenir Sales: compare raw vs log scale to reveal an approximately linear trend.
 
-### Practicals 1–4 (`DMBi_Practicals.ipynb`)
+### Practical 3 — Boston Housing (k-NN regression)
+- Identify categorical predictors and handle them via dummy/binary encoding if needed.
+- Run k-NN regression with **k = 1..5** (after normalization) using a **training/validation split**.
+- Select the best k using validation error (RMSE).
 
-| Practical | Topic | Dataset |
-|-----------|-------|---------|
-| 1 | Exploratory Data Analysis & Correlation | ToyotaCorolla |
-| 2 | Time-Series Plotting & Log Transform | SouvenirSales / ApplianceShipments |
-| 3 | k-NN Regression | BostonHousing |
-| 4 | Hierarchical Clustering & ACF/AR Modeling | Universities / WalMartStock |
+### Practical 4 — Universities (hierarchical clustering) & Wal-Mart (time-series / AR)
+- Hierarchical clustering with **complete linkage** and **Euclidean distance** on normalized continuous variables.
+- Choose a reasonable number of clusters from the dendrogram.
+- Characterize clusters; relate clustering results to categorical variables.
+- For Wal-Mart: use time-series diagnostics (ACF + AR(1)) to assess random-walk behavior.
 
-### Practicals 5–7 (`DMBi_Practicals(5,6,7).ipynb`)
+### Practical 5 — Automobile Accidents (Naive Bayes)
+- Build a binary target `INJURY` from `MAX_SEV_IR`.
+- Train Naive Bayes on categorical predictors.
+- Evaluate using classification matrix and compute validation error.
 
-| Practical | Topic | Dataset | Algorithm |
-|-----------|-------|---------|-----------|
-| 5 | Automobile Accident Injury Prediction | accidentsFull.csv | Naive Bayes (MultinomialNB) |
-| 6 | Car Price Prediction | ToyotaCorolla.csv | Neural Network (MLPRegressor) |
-| 7 | Online Statistics Course Recommendations | Coursetopics.csv | Association Rule Mining (Apriori) |
+### Practical 6 — Car Price Prediction (Neural Networks)
+- Predict car `Price` using selected predictors.
+- Convert categorical values to dummies (one-hot) and scale to **[0, 1]**.
+- Train an `MLPRegressor` and report RMS error on training/validation.
 
-#### Practical 5 – Naive Bayes (Automobile Accidents)
-- Loads `accidentsFull.csv` and creates a binary target `INJURY` (yes/no) from `MAX_SEV_IR`.
-- Uses 12 categorical predictors: hour, alignment, work zone, weekday, highway type, light condition, road profile, speed limit, surface condition, traffic control, traffic way, and weather.
-- Splits data **60/40** into training/validation sets and evaluates via confusion matrix and accuracy score.
+### Practical 7 — Online Statistics Courses (Association Rules / Apriori)
+- Use Apriori with `min_support = 0.05`.
+- Generate association rules using **lift**; filter by `lift > 1.2`.
 
-#### Practical 6 – Neural Networks (Car Sales)
-- Loads `ToyotaCorolla.csv` and selects 16 features (price, age, KM, fuel type, HP, automatic, doors, tax, guarantees, airco, CD player, powered windows, sport model, tow bar).
-- One-hot encodes `Fuel_Type`, then scales all features and target to `[0, 1]` with `MinMaxScaler`.
-- Trains an `MLPRegressor` and reports RMSE on both training and validation partitions.
+### Practical 8 — University Rankings (clustering + imputing missing values)
+- Remove records with missing measurements before clustering.
+- Run hierarchical clustering on normalized continuous variables.
+- Use cluster assignments/statistics to impute missing values (assign partial records to the closest cluster).
 
-#### Practical 7 – Association Rule Mining (Online Courses)
-- Loads `Coursetopics.csv` (a binary transaction matrix of course topic purchases).
-- Runs the **Apriori** algorithm with `min_support = 0.05` to find frequent itemsets.
-- Generates association rules filtered by `lift > 1.2` and displays the top rules sorted by lift descending.
+### Practical 9 — Wal-Mart Stock (random walk test via differencing + AR(1))
+- Create a time plot of the **differenced** series.
+- Check autocorrelations / ACF and fit an **AR(1)** model.
+- Decide whether the stock behaves like a random walk.
 
-## Datasets Used
+### Practical 10 — Souvenir Sales Forecasting (trend + log + validation split)
+- Create a time plot of the monthly series.
+- Transform to log scale to obtain a more linear relationship.
+- Partition the last 12 months as validation (to mimic forecasting for the next year).
 
-| Dataset | File | Used In |
-|---------|------|---------|
-| Toyota Corolla | `ToyotaCorolla.csv` | Practicals 1, 6 |
-| Souvenir Sales | `SouvenirSales.csv` | Practical 2 |
-| Appliance Shipments | `ApplianceShipments.csv` | Practical 2 |
-| Boston Housing | `BostonHousing.csv` | Practical 3 |
-| Universities | `Universities.csv` | Practical 4 |
-| Walmart Stock | `WalMartStock.csv` | Practical 4 |
-| Accidents Full | `accidentsFull.csv` | Practical 5 |
-| Course Topics | `Coursetopics.csv` | Practical 7 |
+## Datasets used
 
-## How to Run
+| Dataset | File | Used in |
+|---|---|---|
+| Toyota Corolla | `ToyotaCorolla.csv` | 1, 6 |
+| Appliance Shipments | `ApplianceShipments.csv` | 2 |
+| Souvenir Sales | `SouvenirSales.csv` | 2, 10 |
+| Boston Housing | `BostonHousing.csv` | 3 |
+| Universities | `Universities.csv` | 4, 8 |
+| Wal-Mart Stock | `WalMartStock.csv` | 4, 9 |
+| Accidents Full | `accidentsFull.csv` | 5 |
+| Course Topics | `Coursetopics.csv` | 7 |
 
-### Prerequisites
-
-- Python 3
-- Jupyter Notebook
+## How to run
 
 ### Install dependencies
 
@@ -69,24 +74,15 @@ This repository contains practicals/notebooks and supporting code for **Data Min
 pip install pandas numpy matplotlib seaborn scikit-learn statsmodels plotly nbformat mlxtend
 ```
 
-> **Note:** `mlxtend` is required for the Apriori algorithm used in Practical 7.
-
-### Launch
+### Jupyter notebooks
 
 ```bash
 jupyter notebook
 ```
 
-- Open **`DMBi_Practicals.ipynb`** for practicals 1–4.
-- Open **`DMBi_Practicals(5,6,7).ipynb`** for practicals 5–7.
-
-Run the cells in order.
-
 ## Notes
 
-- All dataset files must be present in the same folder as the notebook.
-- If a cell fails, verify the dataset filename and column headers match exactly.
-- Practical 6 requires feature scaling — do not skip the `MinMaxScaler` step.
-- Practical 7 requires the `mlxtend` library; install it with `pip install mlxtend`.
-
+- Dataset files must be present in the same folder structure expected by each notebook/script (for `Data-mining-practicals-/Practical*.py`, keep datasets alongside that folder or update file paths).
+- Practical 6 requires feature scaling.
+- Practical 7 requires `mlxtend`.
 
